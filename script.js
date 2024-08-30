@@ -4,65 +4,62 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyBZOKfvEkJwXu7_rXh1lInc6cYdeVnaRo0",
-    authDomain: "purposeful-fadad.firebaseapp.com",
-    projectId: "purposeful-fadad",
-    storageBucket: "purposeful-fadad.appspot.com",
-    messagingSenderId: "189982272401",
-    appId: "1:189982272401:web:e42cc09d39c3e957b74830",
-    measurementId: "G-CH93XTRZ0W"
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID",
+    measurementId: "YOUR_MEASUREMENT_ID"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Sign Up Function
-window.signUp = function () {
+// Expose functions globally
+window.signUp = async function () {
     const email = document.getElementById('signup-email').value;
     const password = document.getElementById('signup-password').value;
 
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            alert('Sign-up successful!');
-            showUserDetails(user);
-        })
-        .catch((error) => {
-            console.error(error);
-            alert(error.message);
-        });
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        alert('Sign-up successful!');
+        showUserDetails(user);
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
 };
 
-// Login Function
-window.logIn = function () {
+window.logIn = async function () {
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
 
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            alert('Login successful!');
-            showUserDetails(user);
-        })
-        .catch((error) => {
-            console.error(error);
-            alert(error.message);
-        });
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        alert('Login successful!');
+        showUserDetails(user);
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
 };
 
-// Logout Function
-window.logOut = function () {
-    signOut(auth).then(() => {
+window.logOut = async function () {
+    try {
+        await signOut(auth);
         alert('Logged out successfully!');
         document.getElementById('user-details').style.display = 'none';
         document.getElementById('signup-form').style.display = 'block';
         document.getElementById('login-form').style.display = 'block';
         document.getElementById('task-container').style.display = 'none';
-    }).catch((error) => {
+    } catch (error) {
         console.error(error);
         alert(error.message);
-    });
+    }
 };
 
 // Show User Details
@@ -156,9 +153,7 @@ function displayTasks(lifetimeTasks, naughtTasks, teenagerTasks) {
     const teenagerList = document.getElementById('teenager-list');
 
     const renderTasks = (tasks, list, category) => {
-        list.innerHTML = tasks.map(task => 
-            `<li><input type="checkbox" onchange="checkAllTasksCompleted('${category}')"> ${task}</li>`
-        ).join('');
+        list.innerHTML = tasks.map(task => `<li><input type="checkbox" onchange="checkAllTasksCompleted('${category}')"> ${task}</li>`).join('');
     };
 
     renderTasks(lifetimeTasks, lifetimeList, 'lifetime');
