@@ -1,4 +1,4 @@
-﻿// Import Firebase SDKs
+// Import Firebase SDKs
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
 
@@ -156,7 +156,9 @@ function displayTasks(lifetimeTasks, naughtTasks, teenagerTasks) {
     const teenagerList = document.getElementById('teenager-list');
 
     const renderTasks = (tasks, list, category) => {
-        list.innerHTML = tasks.map(task => `<li><input type="checkbox" onchange="checkAllTasksCompleted('${category}')"> ${task}</li>`).join('');
+        list.innerHTML = tasks.map(task => 
+            `<li><input type="checkbox" onchange="checkAllTasksCompleted('${category}')"> ${task}</li>`
+        ).join('');
     };
 
     renderTasks(lifetimeTasks, lifetimeList, 'lifetime');
