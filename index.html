@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purposeful App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Authentication Forms -->
+        <div class="auth-container">
+            <div class="form-container" id="signup-form">
+                <h2>Sign Up</h2>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <button onclick="signUp()">Sign Up</button>
+            </div>
+
+            <div class="form-container" id="login-form">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button onclick="logIn()">Login</button>
+            </div>
+
+            <div id="user-details" style="display:none;">
+                <p>Welcome, <span id="user-email"></span>!</p>
+                <button onclick="logOut()">Logout</button>
+            </div>
+        </div>
+
+        <!-- Task Management -->
+        <div class="task-container" id="task-container" style="display:none;">
+            <h1>Purposeful Tasks</h1>
+
+            <div class="tasks-column" id="lifetime-tasks">
+                <h2>Lifetime Tasks</h2>
+                <ul id="lifetime-list"></ul>
+                <button id="lifetime-complete-btn" onclick="completeTasks('lifetime')" disabled>Complete and Claim Reward</button>
+            </div>
+
+            <div class="tasks-column" id="naught-tasks">
+                <h2>Naught Tasks</h2>
+                <ul id="naught-list"></ul>
+                <button id="naught-complete-btn" onclick="completeTasks('naught')" disabled>Complete and Claim Reward</button>
+            </div>
+
+            <div class="tasks-column" id="teenager-tasks">
+                <h2>Teenager Tasks</h2>
+                <ul id="teenager-list"></ul>
+                <button id="teenager-complete-btn" onclick="completeTasks('teenager')" disabled>Complete and Claim Reward</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+
+    <!-- Your JavaScript -->
+    <script src="script.js" defer></script>
+</body>
+</html>
+
