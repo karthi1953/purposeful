@@ -4,14 +4,15 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID",
-    measurementId: "YOUR_MEASUREMENT_ID"
+  apiKey: "AIzaSyBZOKfvEkJwXu7_rXh1lInc6cYdeVnaRo0",
+  authDomain: "purposeful-fadad.firebaseapp.com",
+  projectId: "purposeful-fadad",
+  storageBucket: "purposeful-fadad.appspot.com",
+  messagingSenderId: "189982272401",
+  appId: "1:189982272401:web:4c4f30e26d1edce7b74830",
+  measurementId: "G-6VP08HK24T"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
